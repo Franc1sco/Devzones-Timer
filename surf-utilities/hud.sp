@@ -7,13 +7,18 @@ public Action SurfShowHint(Handle timer, int client)
 	float second;
 	char buffer[64];
 	
-	if(client == 0)
+	if(client == 0 || !IsClientInGame(client))
 	{
 		return;
 	}
 	
 	if(g_surfTimerEnabled[client] != 0)
 	{
+		return;
+	}
+	if(!IsPlayerAlive(client))
+	{
+		g_surfTimerEnabled[client] = 2;
 		return;
 	}
 	/*
