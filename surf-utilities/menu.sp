@@ -196,7 +196,8 @@ public void T_MenuRankRetrive(Database db, DBResultSet results, const char[] err
 	while(SQL_FetchRow(results) && SQL_HasResultSet(results))
 	{
 		SQL_FetchString(results, 1, steam, sizeof(steam));
-		if(FindStringInArray(dupli, steam) != -1)
+		// aqui me salian duplicados con el iner join ese, asi que puse esto para no repetir steams para que no salgan varias veces en el !wr solo una
+		if(FindStringInArray(dupli, steam) != -1) // si la steam ya esta en la array se ignora para evitar duplicados
 		{
 			continue;
 		}
@@ -209,7 +210,7 @@ public void T_MenuRankRetrive(Database db, DBResultSet results, const char[] err
 		
 		menu.AddItem(ID, buffer);
 		
-		PushArrayString(dupli, steam);
+		PushArrayString(dupli, steam); // añado al array para que si se vuelve a repetir, se ignore
 	}
 	
 	delete dupli;
