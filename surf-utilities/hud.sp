@@ -21,13 +21,13 @@ public Action SurfShowHint(Handle timer, int client)
 		g_surfTimerEnabled[client] = 2;
 		return;
 	}
-	/*
-	if(GetEntityMoveType(client) == MOVETYPE_NOCLIP)
+	
+	if(GetEntityMoveType(client) != MOVETYPE_WALK)
 	{
 		g_surfTimerEnabled[client] = 2;
-		CPrintToChat(client, "{lighgreen}[Franug-Timer]{green} Noclip detected, admin abuse.");
+		CPrintToChat(client, "{lighgreen}[Franug-Timer]{green} Cheat detected, timer stopped.");
 		return;
-	}*/
+	}
 	
 	GetClientName(client, buffer, sizeof(buffer));
 	GetCurrentElapsedTime(client, minute, second);
