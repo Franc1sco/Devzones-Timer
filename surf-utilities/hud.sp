@@ -22,7 +22,9 @@ public Action SurfShowHint(Handle timer, int client)
 		return;
 	}
 	
-	if(GetEntityMoveType(client) != MOVETYPE_WALK)
+	MoveType movimiento = GetEntityMoveType(client);
+	
+	if(movimiento != MOVETYPE_WALK && movimiento != MOVETYPE_LADDER)
 	{
 		g_surfTimerEnabled[client] = 2;
 		CPrintToChat(client, "{lighgreen}[Franug-Timer]{green} Cheat detected, timer stopped.");

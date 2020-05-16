@@ -6,7 +6,7 @@
 #include <colorlib>
 
 
-#define VERSION "1.0.2"
+#define VERSION "1.0.3"
 
 #pragma newdecls required
 
