@@ -6,7 +6,7 @@
 #include <colorlib>
 
 
-#define VERSION "1.0.4"
+#define VERSION "1.0.5"
 
 #pragma newdecls required
 
@@ -230,6 +230,7 @@ public void Zone_OnClientLeave(int client, const char[] zone)
 		strcopy(zonename, 128, zone);
 		ReplaceString(zonename, 128, "timer_start_", "", false);
 		CPrintToChat(client, "{lighgreen}[Franug-Timer]{green} Started timer for game %s. Type !notimer for stop timer", zonename);
+		//SetEntityGravity(client, 1.0);
 		
 		return;
 	}

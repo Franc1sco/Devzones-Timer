@@ -31,11 +31,9 @@ public Action SurfShowHint(Handle timer, int client)
 		return;
 	}
 	
-	if(GetEntityGravity(client) != 1.0)
+	if(GetEntityGravity(client) != 1.0 && movimiento != MOVETYPE_LADDER)
 	{
-		g_surfTimerEnabled[client] = 2;
-		CPrintToChat(client, "{lighgreen}[Franug-Timer]{green} Cheat detected, timer stopped.");
-		return;
+		SetEntityGravity(client, 1.0);
 	}
 	
 	GetClientName(client, buffer, sizeof(buffer));
