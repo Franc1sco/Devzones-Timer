@@ -31,9 +31,14 @@ public Action SurfShowHint(Handle timer, int client)
 		return;
 	}
 	
-	if(GetEntityGravity(client) != 1.0 && movimiento != MOVETYPE_LADDER)
+	if(movimiento != MOVETYPE_LADDER)
 	{
-		SetEntityGravity(client, 1.0);
+		if(GetEntityGravity(client) != 1.0)
+			SetEntityGravity(client, 1.0);
+			
+		if(GetEntPropFloat(client, Prop_Data, "m_flLaggedMovementValue") != 1.0)
+			SetEntPropFloat(client, Prop_Data, "m_flLaggedMovementValue", 1.0);
+			
 	}
 	
 	GetClientName(client, buffer, sizeof(buffer));
