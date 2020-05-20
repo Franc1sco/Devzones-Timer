@@ -4,9 +4,12 @@
 #include <devzones>
 #include <sdktools>
 #include <colorlib>
+#undef REQUIRE_PLUGIN
+#include <lastrequest>
+#define REQUIRE_PLUGIN
 
 
-#define VERSION "1.0.6"
+#define VERSION "1.0.7"
 
 #pragma newdecls required
 
@@ -48,6 +51,8 @@ char g_surfTimerEnabled[MAXPLAYERS + 1] = { 0 }; // 0 on Surfing 1 on after reac
 char g_surfZoneName[MAXPLAYERS + 1][128];
 Handle g_Zones;
 
+bool gp_bHosties;
+
 #include "surf-utilities/menu.sp"
 #include "surf-utilities/hud.sp"
 
@@ -81,6 +86,27 @@ public void OnPluginStart()
 		Database.Connect(OnDatabaseConnect, "devzones_timer");
 	} else {
 		SetFailState("No found database entry devzones_timer on databases.cfg");
+	}
+}
+
+public void OnAllPluginsLoaded()
+{
+	gp_bHosties = LibraryExists("lastrequest");
+}
+
+public void OnLibraryRemoved(const char[] name)
+{
+	if (StrEqual(name, "lastrequest"))
+	{
+		gp_bHosties = false;
+	}
+}
+
+public void OnLibraryAdded(const char[] name)
+{
+	if (StrEqual(name, "lastrequest"))
+	{
+		gp_bHosties = true;
 	}
 }
 /*

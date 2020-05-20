@@ -41,6 +41,13 @@ public Action SurfShowHint(Handle timer, int client)
 			
 	}
 	
+	if(gp_bHosties && IsClientInLastRequest(client))
+	{
+		g_surfTimerEnabled[client] = 2;
+		CPrintToChat(client, "{lighgreen}[Franug-Timer]{green} Dont use timer on last request, timer stopped.");
+		return;
+	}
+	
 	GetClientName(client, buffer, sizeof(buffer));
 	GetCurrentElapsedTime(client, minute, second);
 	
