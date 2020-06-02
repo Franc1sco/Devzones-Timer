@@ -209,6 +209,22 @@ public void Zone_OnClientEntry(int client, const char[] zone)
 			
 		if(g_surfTimerEnabled[client] == 0)
 		{	
+			MoveType movimiento = GetEntityMoveType(client);
+	
+			if(movimiento != MOVETYPE_WALK && movimiento != MOVETYPE_LADDER)
+			{
+				g_surfTimerEnabled[client] = 2;
+				CPrintToChat(client, "{lighgreen}[Franug-Timer]{green} Cheat detected, timer stopped.");
+				return;
+			}
+			
+			if(gp_bHosties && IsClientInLastRequest(client))
+			{
+				g_surfTimerEnabled[client] = 2;
+				CPrintToChat(client, "{lighgreen}[Franug-Timer]{green} Dont use timer on last request, timer stopped.");
+				return;
+			}
+			
 			g_surfTimerPoint[client][1] = GetGameTime();
 			float scoredTime = g_surfTimerPoint[client][1] - g_surfTimerPoint[client][0];
 			CPrintToChat(client, "{lighgreen}[Franug-Timer]{green} You've reached to End Zone in %.3fs", scoredTime);
